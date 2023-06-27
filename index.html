@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>.x3n0. Website</title>
+  <style>
+    body {
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    .content {
+      color: white;
+      font-family: 'Franklin Gothic Medium', sans-serif;
+      font-size: 84px;
+      text-align: center;
+    }
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      var textElement = document.querySelector('.content');
+      var ipAddressElement = document.createElement('span');
+      ipAddressElement.style.display = 'none';
+
+      // Function to toggle the text content
+      function toggleText() {
+        if (textElement.textContent === '.x3n0.') {
+          textElement.textContent = 'kys';
+        } else if (textElement.textContent === 'kys') {
+          textElement.textContent = ipAddressElement.textContent;
+        } else {
+          textElement.textContent = '.x3n0.';
+        }
+      }
+
+      // Function to update the IP address
+      function updateIpAddress() {
+        fetch('https://api.ipify.org?format=json')
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(data) {
+            ipAddressElement.textContent = data.ip;
+          });
+      }
+
+      // Initial IP address retrieval
+      updateIpAddress();
+
+      // Toggle the text every 4 seconds
+      setInterval(toggleText, 4000);
+
+      // Update the IP address every 60 seconds
+      setInterval(updateIpAddress, 60000);
+
+      // Append the IP address element to the content element
+      textElement.appendChild(ipAddressElement);
+    });
+  </script>
+</head>
+<body>
+  <div class="content">
+    .x3n0.
+  </div>
+</body>
+</html>
